@@ -45,7 +45,7 @@ $('.button').each(function(e) {
                     [8, 19],
                     [21, 6]
                 ]));
-            }, (duration / 2));https://github.com/mrxie68/cdnimg
+            }, (duration / 2));
 
         }
 
