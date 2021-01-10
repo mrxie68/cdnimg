@@ -1,5 +1,4 @@
-<script type="text/javascript">
-     // 复制的方法
+   // 复制的方法
      function copyText(text, callback){ // text: 要复制的内容， callback: 回调
          var tag = document.createElement('input');
          tag.setAttribute('id', 'cp_hgz_input');
@@ -14,4 +13,3 @@
      document.getElementById('btn').onclick = function (){
          copyText( 'admin@0412.cyou', function (){console.log('复制成功')})
      }
- </script>
