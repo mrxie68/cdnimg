@@ -11,3 +11,5 @@ svg.addEventListener('click', () => {
     clicked = false;
   }
 });
+const container = document.getElementById('my-container');
+console.log(container);
