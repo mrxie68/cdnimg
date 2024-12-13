@@ -1,9 +1,19 @@
-import swup from '@swup/astro';
 import Muuri from 'muuri';
+
+let gridInstance = null;  // 保存 Muuri 实例的全局变量
 
 // 初始化 Muuri 网格
 function initMuuri() {
-  const grid = new Muuri('.grid', {
+  if (gridInstance) {
+    gridInstance.destroy();
+  }
+
+  if (!document.querySelector('.grid')) {
+    console.error('Muuri 网格元素不存在');
+    return;
+  }
+
+  gridInstance = new Muuri('.grid', {
     dragEnabled: true,
     dragContainer: document.querySelector('.drag-container'),
     dragAutoScroll: { targets: [window] },
@@ -42,11 +52,19 @@ function initMuuri() {
     },
   });
 
-  console.log('Grid 对象:', grid);
+  console.log('Grid 对象:', gridInstance);
 }
 
 // 初始加载时初始化 Muuri
-document.addEventListener('DOMContentLoaded', initMuuri);
+document.addEventListener('DOMContentLoaded', () => {
+  initMuuri();
+  
+  const swup = new window.Swup();  // 使用 window.Swup
 
-// 使用 Swup 钩子监听页面加载完成
-document.addEventListener('swup:contentReplaced', initMuuri);
+  if (swup) {
+    console.log('Swup 已初始化');
+    swup.hooks.on('contentReplaced', initMuuri);
+  } else {
+    console.log('Swup 初始化失败');
+  }
+});
